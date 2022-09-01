@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1399252813969194979}
   - component: {fileID: 4643577701059586711}
+  - component: {fileID: 1821368116644314212}
   m_Layer: 0
   m_Name: Slime_01
   m_TagString: Untagged
@@ -60,7 +61,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6745725516270905215}
   m_Father: {fileID: 6216532115693788942}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,6 +123,31 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.24500029, z: 0.0007519424}
     m_Extent: {x: 0.29999995, y: 0.24500029, z: 0.2818529}
   m_DirtyAABB: 0
+--- !u!114 &1821368116644314212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2669671996729381096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41c7c6239ecab4ca928bfbda528e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origen: {fileID: 1399252813969194979}
+  final: {fileID: 4482372933878151429}
+  rayDistance: 100
+  SlimeWeapon: 0
+  material:
+  - {fileID: 2100000, guid: f093272517ab40f4db2cfcb27c9942b5, type: 2}
+  - {fileID: 2100000, guid: 8b10ede49d0c9f44a91ccd6e0f2eccc9, type: 2}
+  - {fileID: 2100000, guid: c13341daa5e41eb4c8fedfb09e27ce53, type: 2}
+  ojos:
+  - {fileID: 2100000, guid: 67be76e17b49ae44a9fad20ecfca0746, type: 2}
+  - {fileID: 2100000, guid: 3b3f4da03dfdec04abc7fb587f8f8e1b, type: 2}
+  - {fileID: 2100000, guid: 2a489f7f639e24140b9b735380e38c7b, type: 2}
+  - {fileID: 2100000, guid: 37d25f3f946b640439f920f225b22520, type: 2}
 --- !u!1 &3462198102605605742
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +210,37 @@ Transform:
   - {fileID: 8981274295039130539}
   - {fileID: 8331470522872954402}
   m_Father: {fileID: 7625824445407367461}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5910094837779280465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4482372933878151429}
+  m_Layer: 0
+  m_Name: Final
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4482372933878151429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910094837779280465}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6745725516270905215}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5961917832403913375
@@ -270,6 +328,8 @@ MonoBehaviour:
   SlimeType: 1
   playerTransform: {fileID: 0}
   animator: {fileID: -3584797977750938603}
+  vida: 3
+  damage: 1
 --- !u!136 &3287830511678656033
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -366,6 +426,38 @@ Transform:
   - {fileID: 6099005710090621285}
   m_Father: {fileID: 8993603566554055645}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8180757781675599957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6745725516270905215}
+  m_Layer: 0
+  m_Name: Origen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6745725516270905215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180757781675599957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.27, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4482372933878151429}
+  m_Father: {fileID: 1399252813969194979}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8414972406771447875
 GameObject:

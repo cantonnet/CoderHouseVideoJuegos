@@ -139,4 +139,5 @@ public class LogicalSlime : MonoBehaviour
                     colision = false;
         }
     }
+
 }
