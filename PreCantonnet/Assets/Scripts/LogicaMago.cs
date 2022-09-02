@@ -67,8 +67,15 @@ public class LogicaMago : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Weapon"))
         { 
+            //agregar a listata
             other.gameObject.SetActive(false);
             WeaponManager.WeaponList.Add(other.gameObject);
+            //cola
+            WeaponManager.WeaponQueue.Enqueue(other.gameObject);
+
+            //dic
+            WeaponManager.WeaponDirectory.Add(other.gameObject.name,other.gameObject);
+            Debug.Log(WeaponManager.WeaponDirectory[other.gameObject.name]);
         }
     }
 
