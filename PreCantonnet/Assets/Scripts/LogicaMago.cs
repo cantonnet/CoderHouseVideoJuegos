@@ -14,6 +14,8 @@ public class LogicaMago : MonoBehaviour
     private Animator anim;
     public float x, y, z;
 
+    [SerializeField] WeaponManager WeaponManager;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -59,6 +61,15 @@ public class LogicaMago : MonoBehaviour
         // cameraAxisX += Input.GetAxis("Horizontal");
         // Quaternion newRotation = Quaternion.Euler(0, cameraAxisX, 0);
         // transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime *  rotationspeed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Weapon"))
+        { 
+            other.gameObject.SetActive(false);
+            WeaponManager.WeaponList.Add(other.gameObject);
+        }
     }
 
     // private void FixedUpdate() 
