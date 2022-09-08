@@ -143,11 +143,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f093272517ab40f4db2cfcb27c9942b5, type: 2}
   - {fileID: 2100000, guid: 8b10ede49d0c9f44a91ccd6e0f2eccc9, type: 2}
   - {fileID: 2100000, guid: c13341daa5e41eb4c8fedfb09e27ce53, type: 2}
-  ojos:
-  - {fileID: 2100000, guid: 67be76e17b49ae44a9fad20ecfca0746, type: 2}
-  - {fileID: 2100000, guid: 3b3f4da03dfdec04abc7fb587f8f8e1b, type: 2}
-  - {fileID: 2100000, guid: 2a489f7f639e24140b9b735380e38c7b, type: 2}
-  - {fileID: 2100000, guid: 37d25f3f946b640439f920f225b22520, type: 2}
 --- !u!1 &3462198102605605742
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,12 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c215eb7f315d0c24c84d8449cfa7b89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   SlimeType: 1
   playerTransform: {fileID: 0}
   animator: {fileID: -3584797977750938603}
-  vida: 3
-  damage: 1
+  slimeData: {fileID: 11400000, guid: d20602c08a012fc4aa080ff6e06e24ba, type: 2}
 --- !u!136 &3287830511678656033
 CapsuleCollider:
   m_ObjectHideFlags: 0

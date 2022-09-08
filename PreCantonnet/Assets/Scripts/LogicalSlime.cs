@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class LogicalSlime : MonoBehaviour
 {
-
-    [SerializeField]
-    [Range(1f, 10f)]
-    private float speed = 2f;
     enum slimetype { Rotador, Seguidor, huir, idle};
     [SerializeField] slimetype SlimeType;
     [SerializeField] Transform playerTransform;
@@ -15,14 +11,17 @@ public class LogicalSlime : MonoBehaviour
     private bool caminar;
     private bool colision;
     int escala;
-    public int vida = 3;
-    public int damage = 1;
     float time;
+    int vidaslime;
+
+    [SerializeField]
+    protected SlimeData slimeData;
 
     // Start is called before the first frame update
     void Start()
     {
-       escala = Random.Range(1, 4);
+       vidaslime = slimeData.vida; 
+       escala = Random.Range(slimeData.escalamenor, slimeData.escalamayor);
        playerTransform = GameObject.FindWithTag("Jugador").transform;
        animator = GetComponent<Animator>();
        transform.localScale = transform.localScale * escala;
@@ -30,6 +29,13 @@ public class LogicalSlime : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        swicher();
+        morir();
+        ResetState();
+    }
+
+    public void swicher()
     {
         switch (SlimeType)
         {
@@ -49,63 +55,61 @@ public class LogicalSlime : MonoBehaviour
                 colision = true;
                 break;
         }
-        morir();
-        ResetState();
     }
 
-    private void RotarAlJugador()
+    public void RotarAlJugador()
     {
         VerJugador();
         transform.RotateAround(playerTransform.position, Vector3.up, 5f * Time.deltaTime);
     }
 
-    private void Movimiento()
+    public void Movimiento()
     {
-        if (speed != 0){caminar = true;}else{caminar = false;}
+        if (slimeData.speed != 0){caminar = true;}else{caminar = false;}
     }
 
-    private void SeguirJugador()
+    public void SeguirJugador()
     {
         VerJugador();
         Vector3 direction = (playerTransform.position - transform.position);
         if (direction.magnitude > 2.5f)
         {
-           transform.position += direction.normalized * speed * Time.deltaTime;
+           transform.position += direction.normalized * slimeData.speed * Time.deltaTime;
         }
     }
 
-    private void HuirDelJugador()
+    public void HuirDelJugador()
     {
         NoVerJugador();
         Vector3 direction = (playerTransform.position + transform.position);
         if (direction.magnitude > 2.5f)
         {
-           transform.position += direction.normalized * speed * Time.deltaTime;
+           transform.position += direction.normalized * slimeData.speed * Time.deltaTime;
         }
     }
     
-    private void VerJugador()
+    public void VerJugador()
     {
         Quaternion newRotation = Quaternion.LookRotation(playerTransform.position - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 1.5f * Time.deltaTime);
     }
 
-    private void NoVerJugador()
+    public void NoVerJugador()
     {
         Quaternion newRotation = Quaternion.LookRotation(playerTransform.position + transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 1.5f * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Poder"))
         { 
             time += Time.deltaTime;
             colision = true;
-            vida = vida - damage;
+            vidaslime = vidaslime - slimeData.damage;
         }
     }
-     private void ResetState()
+     public void ResetState()
     {
         if (colision == false)
                 {
@@ -125,15 +129,15 @@ public class LogicalSlime : MonoBehaviour
                 }
     }
 
-    private void morir()
+    public void morir()
     {
-        if (vida <= 0)
+        if (vidaslime <= 0)
         { 
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    public void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Poder"))
         { 
                     colision = false;
