@@ -8,6 +8,8 @@ public class WeaponManager : MonoBehaviour
     //TDA1
     [SerializeField] GameObject[] weapons;
     [SerializeField] Transform playerHand;
+    [SerializeField] HUDManager HUDManager;
+    int indexIcon;
     // Start is called before the first frame update
     //TDA 2
     [SerializeField] List<GameObject> weaponList;
@@ -66,6 +68,9 @@ public class WeaponManager : MonoBehaviour
             weaponDirectory["WeaponA"].transform.localPosition = Vector3.zero;
             weaponDirectory["WeaponB"].SetActive(false);
             weaponDirectory["WeaponC"].SetActive(false);
+            indexIcon = 0;
+            HUDManager.EnableWeapon(indexIcon);
+            HUDManager.SetSelectedText("BlueStaff");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -74,6 +79,9 @@ public class WeaponManager : MonoBehaviour
             weaponDirectory["WeaponB"].transform.localPosition = Vector3.zero;
             weaponDirectory["WeaponA"].SetActive(false);
             weaponDirectory["WeaponC"].SetActive(false);
+            indexIcon = 1;
+            HUDManager.EnableWeapon(indexIcon);
+            HUDManager.SetSelectedText("GreenStaff");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -82,6 +90,9 @@ public class WeaponManager : MonoBehaviour
             weaponDirectory["WeaponC"].transform.localPosition = Vector3.zero;
             weaponDirectory["WeaponA"].SetActive(false);
             weaponDirectory["WeaponB"].SetActive(false);
+            indexIcon = 2;
+            HUDManager.EnableWeapon(indexIcon);
+            HUDManager.SetSelectedText("RedStaff");
         } 
 
     }

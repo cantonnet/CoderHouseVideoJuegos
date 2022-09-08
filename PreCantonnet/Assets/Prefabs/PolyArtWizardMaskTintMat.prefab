@@ -2418,12 +2418,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f13e45068f21b4459f8bcb7e994aaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUDManager: {fileID: 0}
+  DispararMago: {fileID: 1150813000748989262}
   speed: 5
   lateralspeed: 3
   rotationspeed: 1000
+  recargamana: 0
+  tiempoderecargamana: 5
   x: 0
   y: 0
   z: 0
+  hp: 100
+  mp: 100
+  WeaponManager: {fileID: 0}
 --- !u!95 &95805638432926132
 Animator:
   serializedVersion: 4

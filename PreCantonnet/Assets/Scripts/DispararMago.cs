@@ -6,6 +6,7 @@ public class DispararMago : MonoBehaviour
 {
     public GameObject poder;
     private bool canShoot = true;
+    float cantidadmp;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +16,16 @@ public class DispararMago : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)){
-            if (canShoot)
-            {
-                canShoot = false;
-                Invoke("instanciar", 0.15f);
-                Invoke("ResetShoot", 0.29f);
-            }
+        if (cantidadmp > 14)
+        {
+            if(Input.GetKeyDown(KeyCode.E)){
+                if (canShoot)
+                {
+                    canShoot = false;
+                    Invoke("instanciar", 0.15f);
+                    Invoke("ResetShoot", 0.29f);
+                }
+        }
         }
     }
     
@@ -33,6 +37,11 @@ public class DispararMago : MonoBehaviour
     private void instanciar()
     {
         Instantiate(poder, transform.position, transform.rotation);
+    }
+
+    public void tomarmp(float nuevoValor)
+    {
+        cantidadmp = nuevoValor;
     }
     
 }

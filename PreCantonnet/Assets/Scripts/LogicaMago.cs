@@ -5,14 +5,20 @@ using UnityEngine;
 public class LogicaMago : MonoBehaviour
 {
     // public GameObject poder;
+    [SerializeField] HUDManager HUDManager;
+    [SerializeField] DispararMago DispararMago;
     public float speed = 4f;
     public float lateralspeed = 3f;
     public float rotationspeed = 1000f;
+    public float recargamana;
+    public float tiempoderecargamana = 5;
     // private bool canShoot = true;
     // private float cameraAxisX = 0f;
     
     private Animator anim;
     public float x, y, z;
+    public int hp = 100;
+    public int mp = 100;
 
     [SerializeField] WeaponManager WeaponManager;
 
@@ -24,12 +30,16 @@ public class LogicaMago : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        manaaumentar();
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
         z = Input.GetAxis("Mouse X");
-
-        bool atacando = Input.GetKeyDown(KeyCode.E);
-        if (atacando) anim.SetBool("ataque", true);
+        if (mp > 15)
+        {
+         bool atacando = Input.GetKeyDown(KeyCode.E);
+         if (atacando) {anim.SetBool("ataque", true); mp = mp - 15; HUDManager.SetMPBar(mp); DispararMago.tomarmp(mp);}
+        }
         bool atacando2 = Input.GetKeyUp(KeyCode.E);
         if (atacando2) anim.SetBool("ataque", false);
         // if (atacando) anim.SetTrigger("atacar");
@@ -76,6 +86,21 @@ public class LogicaMago : MonoBehaviour
             //dic
             WeaponManager.WeaponDirectory.Add(other.gameObject.name,other.gameObject);
             Debug.Log(WeaponManager.WeaponDirectory[other.gameObject.name]);
+        }
+    }
+
+    void manaaumentar()
+    {
+        recargamana = recargamana + Time.deltaTime;
+        if (recargamana > tiempoderecargamana)
+        {   
+            if (mp < 100)
+             {
+                mp = mp + 10;
+                HUDManager.SetMPBar(mp);
+                DispararMago.tomarmp(mp);
+             }
+             recargamana = 0;
         }
     }
 
