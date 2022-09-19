@@ -21,9 +21,9 @@ public class DispararMago : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.E)){
                 if (canShoot)
                 {
+                    Invoke("instanciar", 0.85f);
                     canShoot = false;
-                    Invoke("instanciar", 0.15f);
-                    Invoke("ResetShoot", 0.29f);
+                    Invoke("ResetShoot", 2f);
                 }
         }
         }

@@ -7,6 +7,7 @@ public class LogicaMago : MonoBehaviour
     // public GameObject poder;
     [SerializeField] HUDManager HUDManager;
     [SerializeField] DispararMago DispararMago;
+    public bool canrun = false;
     public float speed = 4f;
     public float lateralspeed = 3f;
     public float rotationspeed = 1000f;
@@ -30,11 +31,12 @@ public class LogicaMago : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        correr();
         manaaumentar();
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
         z = Input.GetAxis("Mouse X");
+        if (canrun) {anim.SetBool("run", true);} else {anim.SetBool("run", false);}
         if (mp > 15)
         {
          bool atacando = Input.GetKeyDown(KeyCode.E);
@@ -101,6 +103,19 @@ public class LogicaMago : MonoBehaviour
                 DispararMago.tomarmp(mp);
              }
              recargamana = 0;
+        }
+    }
+
+    void correr()
+    {
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            canrun = false;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            canrun = true;
         }
     }
 
