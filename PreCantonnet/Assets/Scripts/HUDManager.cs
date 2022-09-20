@@ -19,6 +19,10 @@ public class HUDManager : MonoBehaviour
         {
             instance = this;
             Debug.Log(instance);
+            LogicaMago.OnDead += GameOver;
+            LogicaDePoderes.OnHit += SendHitPoint;
+            LogicalSlime.OnEnemyDead += EnemyDead;
+            LogicalSlime.OnEnemyHit += PlayEnemySound;
         }
         else
         {
@@ -68,5 +72,25 @@ public class HUDManager : MonoBehaviour
     public static void SetMPBar (int newValue)
     {
         instance.mpbar.value = newValue;
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Respuesta desde otro Script");
+    }
+
+    private void SendHitPoint()
+    {
+        Debug.Log("Respuesta desde otro Script para sendhitpoint");
+    }
+
+    private void EnemyDead()
+    {
+        Debug.Log("Respuesta desde otro SlimeDead");
+    }
+
+    private void PlayEnemySound()
+    {
+        Debug.Log("Respuesta desde otro Script SlimePlaySound");
     }
 }

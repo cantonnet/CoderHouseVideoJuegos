@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LogicaDePoderes : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LogicaDePoderes : MonoBehaviour
     float y;
     float time;
     float eliminaral = 5;
+    public static event Action OnHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,8 @@ public class LogicaDePoderes : MonoBehaviour
         if (other.gameObject.CompareTag("Criatura"))
         { 
             Destroy(gameObject);
+            LogicaDePoderes.OnHit.Invoke();
+            Debug.Log("Hit Enemy");
         }
     }
 }

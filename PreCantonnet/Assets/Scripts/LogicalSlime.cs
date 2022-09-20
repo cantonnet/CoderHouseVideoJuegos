@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LogicalSlime : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class LogicalSlime : MonoBehaviour
     int escala;
     float time;
     int vidaslime;
+    public static event Action OnEnemyDead;
+    public static event Action OnEnemyHit;
 
     [SerializeField]
     protected SlimeData slimeData;
@@ -21,7 +24,7 @@ public class LogicalSlime : MonoBehaviour
     void Start()
     {
        vidaslime = slimeData.vida; 
-       escala = Random.Range(slimeData.escalamenor, slimeData.escalamayor);
+       escala = 1;//Random.Range(slimeData.escalamenor, slimeData.escalamayor);
        playerTransform = GameObject.FindWithTag("Jugador").transform;
        animator = GetComponent<Animator>();
        transform.localScale = transform.localScale * escala;
@@ -107,6 +110,7 @@ public class LogicalSlime : MonoBehaviour
             time += Time.deltaTime;
             colision = true;
             vidaslime = vidaslime - slimeData.damage;
+            LogicalSlime.OnEnemyHit.Invoke();
         }
     }
      public void ResetState()
@@ -133,6 +137,7 @@ public class LogicalSlime : MonoBehaviour
     {
         if (vidaslime <= 0)
         { 
+            LogicalSlime.OnEnemyDead.Invoke();
             Destroy(gameObject);
         }
     }

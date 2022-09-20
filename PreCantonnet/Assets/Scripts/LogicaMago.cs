@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LogicaMago : MonoBehaviour
 {
@@ -8,14 +9,15 @@ public class LogicaMago : MonoBehaviour
     [SerializeField] HUDManager HUDManager;
     [SerializeField] DispararMago DispararMago;
     public bool canrun = false;
-    public float speed = 4f;
-    public float lateralspeed = 3f;
+    public float runmulti = 1.5f;
+    public float speed = 2.7f;
+    public float lateralspeed = 2.5f;
     public float rotationspeed = 1000f;
     public float recargamana;
     public float tiempoderecargamana = 5;
     // private bool canShoot = true;
     // private float cameraAxisX = 0f;
-    
+    public static event Action OnDead;
     private Animator anim;
     public float x, y, z;
     public int hp = 100;
@@ -31,6 +33,11 @@ public class LogicaMago : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hp <= 0)
+        {
+            Debug.Log("GAME OVER");
+            LogicaMago.OnDead.Invoke();
+        }
         correr();
         manaaumentar();
         x = Input.GetAxis("Horizontal");
@@ -111,11 +118,15 @@ public class LogicaMago : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             canrun = false;
+            speed = 2.7f;
+            lateralspeed = 2.5f;
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             canrun = true;
+            speed = 4f;
+            lateralspeed = 3f;
         }
     }
 

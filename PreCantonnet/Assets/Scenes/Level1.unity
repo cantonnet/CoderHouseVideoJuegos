@@ -28939,6 +28939,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -9104766706327270412, guid: 2ccbf31195c758749ad7795744ff45b9, type: 3}
+      propertyPath: speed
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -9104766706327270412, guid: 2ccbf31195c758749ad7795744ff45b9, type: 3}
+      propertyPath: lateralspeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -9104766706327270412, guid: 2ccbf31195c758749ad7795744ff45b9, type: 3}
       propertyPath: WeaponManager
       value: 
       objectReference: {fileID: 82714837}
