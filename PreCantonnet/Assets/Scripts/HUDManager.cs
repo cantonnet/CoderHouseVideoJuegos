@@ -23,6 +23,7 @@ public class HUDManager : MonoBehaviour
             LogicaDePoderes.OnHit += SendHitPoint;
             LogicalSlime.OnEnemyDead += EnemyDead;
             LogicalSlime.OnEnemyHit += PlayEnemySound;
+            DispararMago.OnPowerInvoke += PlayPowerSound;
         }
         else
         {
@@ -92,5 +93,10 @@ public class HUDManager : MonoBehaviour
     private void PlayEnemySound()
     {
         Debug.Log("Respuesta desde otro Script SlimePlaySound");
+    }
+
+    private void PlayPowerSound()
+    {
+        Debug.Log("Respuesta desde otro Script PlayPower");
     }
 }
